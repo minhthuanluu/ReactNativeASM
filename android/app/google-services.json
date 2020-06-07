@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "323589888115",
+    "firebase_url": "https://wide-axiom-267708.firebaseio.com",
+    "project_id": "wide-axiom-267708",
+    "storage_bucket": "wide-axiom-267708.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323589888115:android:0e9306f1a2e3507e983206",
+        "android_client_info": {
+          "package_name": "com.asm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323589888115-ts098val2buunugoo9q3o7d5v3t0e0mu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.asm",
+            "certificate_hash": "5e6acc71c751f5cd8c9dca4e48192c6da54c99a8"
+          }
+        },
+        {
+          "client_id": "323589888115-9f1rm4j5tqdaarsvv9i3b301sqinmt64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDdmoV7mxtdbhJLAJqxhpXPvkDQ16wVd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323589888115-9f1rm4j5tqdaarsvv9i3b301sqinmt64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
