@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Text, StyleSheet, View, Button, Image, TouchableOpacity, FlatList, ActivityIndicator, Alert } from 'react-native';
-import fb ,{ firestorage, postRef } from "./firebase";
+import fb, { firestorage, postRef } from "./firebase";
 import * as firebase from 'firebase';
 import Swipeout from 'react-native-swipeout';
 
@@ -15,7 +15,7 @@ export default function Main({ navigation }) {
 
     const logout = () => {
         firebase.auth().signOut();
-        setLogin(false);    
+        setLogin(false);
     }
 
     React.useLayoutEffect(() => {
@@ -51,32 +51,32 @@ export default function Main({ navigation }) {
         firebase.database().ref('posts/').once('value', function (snapshot) {
             setDatabase(Object.values(snapshot.val()))
             setLoading(false);
-            console.log(database)
+            // console.log(database)
         });
     }
 
     const gotoEdit = (item) => {
-        navigation.navigate('EditPost',{item:item,editTitle:"Edit Post"})
+        navigation.navigate('EditPost', { item: item, editTitle: "Edit Post" })
     }
 
     const del = (item) => {
         setLoading(true)
         firebase.database().ref('posts').child(item.id).remove();
         setLoading(false);
-    }   
+    }
 
     //xóa item đồng thời xóa hình ảnh của item đó trong storage
     const deleteData = (item) => {
         Alert.alert(
             "Xóa sản phẩm",
-           item.id.toString(),
+            item.title.toString(),
             [
                 {
                     text: "Cancel",
                     onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
                 },
-                { text: "OK", onPress: () => del(item)}
+                { text: "OK", onPress: () => del(item) }
             ],
             { cancelable: false }
         );
@@ -92,7 +92,7 @@ export default function Main({ navigation }) {
         text: 'Edit',
         backgroundColor: 'blue',
         underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
-        onPress: () => { gotoEdit(item)}
+        onPress: () => { gotoEdit(item) }
     }];
 
     //render dữ liệu 1 item đối với admin
@@ -107,6 +107,7 @@ export default function Main({ navigation }) {
                 <Image source={{ uri: item.image }} style={{ width: 80, height: 70, borderRadius: 10 }} />
                 <View style={styles.content}>
                     <Text style={styles.renderItemTitle}>{item.title}</Text>
+                    <Text style={{color:'#f00'}}>{item.username}</Text>
                     <Text>{item.content.substring(0, 100)}...</Text>
                 </View>
             </TouchableOpacity></Swipeout>
@@ -117,22 +118,24 @@ export default function Main({ navigation }) {
             <Image source={{ uri: item.image }} style={{ width: 80, height: 70, borderRadius: 10 }} />
             <View style={styles.content}>
                 <Text style={styles.renderItemTitle}>{item.title}</Text>
+                <Text style={{color:'#f00'}}>{item.username}</Text>
                 <Text>{item.content.substring(0, 100)}...</Text>
             </View>
         </TouchableOpacity>
     }
 
-    
-     
+
+
     //khi load trang home => tiến hành load dữ liệu từ database
-    useEffect(()=>getData());
+    useEffect(() => getData());
     return (
         <View style={{ flex: 1, margin: 15 }}>
+
             {
                 loading == false ?
                     <FlatList
                         data={database}
-                        renderItem={({ item }) => fb.auth().currentUser != null ? renderAdminItem(item) : renderItem(item)}
+                        renderItem={({ item }) => fb.auth().currentUser.email != item.username ? renderAdminItem(item) : renderItem(item)}
                         keyExtractor={(item) => item.key}
                         key={(item) => item.key} />
                     :

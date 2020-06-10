@@ -8,6 +8,7 @@ import Post from './components/Post';
 import Login from './components/Login';
 import Detail from './components/Detail';
 import EditPost from './components/EditPost';
+import Registry from './components/Registry';
 
 function HomeScreen({ navigation }) {
   return <Main navigation={navigation}/>
@@ -15,6 +16,10 @@ function HomeScreen({ navigation }) {
 
 function LoginScreen({ navigation }) {
   return <Login navigation={navigation}/>
+}
+
+function RegistryScreen({ navigation }) {
+  return <Registry navigation={navigation}/>
 }
 
 function SplashScreen({ navigation }) {
@@ -51,6 +56,7 @@ function App() {
         <Stack.Screen name="Post" component={PostScreen} />
         <Stack.Screen name="EditPost" component={EditScreen} />
         <Stack.Screen name="Detail" component={DetailScreen} />
+        <Stack.Screen name="Registry" component={RegistryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

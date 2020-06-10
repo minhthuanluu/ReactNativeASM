@@ -11,5 +11,6 @@ const fb = firebase.initializeApp(config);
 export const db = firebase.database();
 export const firestorage = firebase.storage();
 export const postRef = firebase.database().ref().child('posts/');
+export const userRef = firebase.database().ref().child('users/');
 export default fb;
 
